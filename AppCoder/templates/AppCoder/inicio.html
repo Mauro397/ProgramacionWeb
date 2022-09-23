@@ -1,0 +1,76 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+
+Bienvenidos a mi pagina Web
+                                
+{% endblock %}
+
+{% block NavbarTitulo %}
+
+MiPrimerProyecto
+                                
+{% endblock %}
+
+
+{% block descripcion %}
+
+
+<form action="/AppCoder/resultados/" method="GET">
+
+    <input type="text" name="entrenador" id="entrenador" >
+
+    <input type="submit" value="Buscar">
+
+</form>
+
+<p>Estamos buscando al entrenador: {{entrenador}}</p>
+
+{% for entrenador in entrenadores %}
+
+    <p>Nombre: {{entrenador.nombre}} ---- Apellido: {{entrenador.apellido}} ---- Especialidad: {{entrenador.especialidad}}</p>
+
+{% endfor %}
+
+<form action="/AppCoder/resultadosMaquina/" method="GET">
+
+    <input type="text" name="maquina" id="maquina" >
+
+    <input type="submit" value="Buscar">
+
+</form>
+
+<p>Estamos buscando la maquina: {{maquina}}</p>
+
+{% for maquina in maquinas %}
+
+    <p>Nombre: {{maquina.nombre}} ---- zonaDeTrabajo: {{maquina.zonaDeTrabajo}} ---- pesoMax: {{maquina.pesoMax}}</p>
+
+
+{% endfor %}
+
+<form action="/AppCoder/resultadosGimnasio/" method="GET">
+
+    <input type="text" name="gimnasio" id="gimnasio" >
+
+    <input type="submit" value="Buscar">
+
+</form>
+
+<p>Estamos buscando el establecimiento: {{gimnasio}}</p>
+
+{% for gimnasio in gimnasios %}
+
+    <p>Nombre: {{gimnasio.nombre}} ---- fechaCreacicion: {{gimnasio.fechaCreacicion}} ---- localicacion: {{gimnasio.localicacion}}</p>
+
+{% endfor %}
+
+{% endblock %}
+
+{% block botonEnviar %}
+
+Enviar
+                                
+{% endblock %}
