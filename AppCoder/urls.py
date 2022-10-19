@@ -3,7 +3,7 @@ from AppCoder.views import *
 
 urlpatterns = [
     path("",inicio, name="Inicio"),
-    path("gimnasio/",gimnasio,name="Gimnasios"),
+    #path("gimnasio/",gimnasio,name="Gimnasios"),
     path("maquina/",maquina,name="Maquinas"),
     path("entrenador",entrenador,name="Entrenadores"),
     path("buscarEntrenador", busquedaEntrenador, name="BuscarEntrenador"),
@@ -14,10 +14,11 @@ urlpatterns = [
     path("resultadosGimnasio/",resultadosGimnasio,name="RestuladosObtenidosGimnasios"),
 
     #CRUD de gimnasios
-    path("leerGimnasios/", leerGimnasios,name="GimnasiosLeer"),
-    path("crearGimnasios/",crearGimnasios,name="GimnasiosCrear"),
-    path("eliminarGimnasios/<gimnasioNombre>/",eliminarGimnasios,name="GimnasiosEliminar"),
-    path("editarGimnasios/<gimnasioNombre>/",editarGimnasios,name="GimnasiosEditar"),
+    path("gimnasio/list/", ListaGimnasio.as_view(),name="GimnasiosLeer"),
+    path("gimnasio/<int:pk>",DetalleGimnasio.as_view(),name="GimnasiosDetalle"),
+    path("gimnasio/crear/",CrearGimnasio.as_view(),name="GimnasiosCrear"),
+    path("gimnasio/editar/<int:pk>",ActualizarGimnasio.as_view(),name="GimnasiosEditar"),
+    path("gimnasio/borrar/<int:pk>",BorrarGimnasio.as_view(),name="GimnasiosBorrar"),
 
     #CRUD de maquinas
     path("leerMaquinas/", leerMaquinas,name="MaquinasLeer"),

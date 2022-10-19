@@ -1,4 +1,3 @@
-from this import d
 from django.shortcuts import render
 from AppCoder.forms import *
 from AppCoder.models import *
@@ -216,29 +215,6 @@ def editarMaquinas(request, maquinaNombre):
 
 #Seccion Gimnasios
 
-def crearGimnasios(request):
-
-    if request.method =="POST": #Lo que ocurre si se le da al boton enviar
-
-        formulario3 = GimnasiosFormulario(request.POST)
-
-        if formulario3.is_valid():
-
-            info = formulario3.cleaned_data
-
-            Gimnasios1 = Gimnasio(nombre=info["nombre"], fechaCreacion=info["fechaCreacion"], localicacion=info["Localicacion"])
-
-            Gimnasios1.save()
-
-            return render(request, "AppCoder/inicio.html")
-    
-    else:
-
-        formulario3 = GimnasiosFormulario()
-
-
-    return render(request, "AppCoder/gimnasiosFormulario.html", {"form3":formulario3})
-
 def busquedaGimnasio(request):
 
     return render(request, "AppCoder/inicio.html")
@@ -258,53 +234,32 @@ def resultadosGimnasio(request):
 
     return HttpResponse(respuesta)
 
-def leerGimnasios(request):
+
+
+
+
+class ListaGimnasio(ListView):
+    model = Gimnasio
+
+class DetalleGimnasio(DetailView):
     
-    gimnasios = Gimnasio.objects.all()
+    model = Gimnasio
 
-    contexto = {"Gym": gimnasios}
+class CrearGimnasio(CreateView):
 
-    return render(request, "AppCoder/leerGimnasios.html", contexto)
+    model = Gimnasio
+    succes_url = "/AppCoder/gimnasio/list"
+    fields = ["nombre","fechaCreacion","localicacion"]
 
-
-def eliminarGimnasios(request, gimnasioNombre):
-
-    gimnasio = Gimnasio.objects.get(nombre=gimnasioNombre)
-    gimnasio.delete()
-
-    gimnasios = Gimnasio.objects.all()
-
-    contexto = {"Gym":gimnasios}
-
-    return render(request, "AppCoder/leerGimnasios.html", contexto)
-
-def editarGimnasios(request, gimnasioNombre):
-
-    gimnasio = Gimnasio.objects.get(nombre=gimnasioNombre)
-
-    if request.method =="POST": #Lo que ocurre si se le da al boton enviar
-
-        formulario3 = GimnasiosFormulario(request.POST)
-
-        if formulario3.is_valid():
-
-            info = formulario3.cleaned_data
-
-            gimnasio.nombre = info["nombre"]
-            gimnasio.fechaCreacion = info["fechaDeCreacion"]
-            gimnasio.localicacion = info["localizacion"]
-
-            gimnasio.save()
-
-            return render(request, "AppCoder/inicio.html")
+class ActualizarGimnasio(UpdateView):
     
-    else:
+    model = Gimnasio
+    succes_url = "/AppCoder/gimnasio/list"
+    fields = ["nombre","fechaCreacion","localicacion"]
 
-        formulario3 = GimnasiosFormulario(initial={"nombre":gimnasio.nombre, "fechaDeCreacion":gimnasio.fechaCreacion,
-        "localizacion":gimnasio.localicacion})
+class BorrarGimnasio(DeleteView):
 
-
-    return render(request, "AppCoder/editarGimnasios.html", {"form3":formulario3, "nombre":gimnasioNombre})
-
+    model = Gimnasio
+    succes_url = "/AppCoder/gimnasio/list"
 
 

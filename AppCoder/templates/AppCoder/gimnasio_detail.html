@@ -8,24 +8,11 @@
 </head>
 <body>
     
-    {% for gimnasio in Gym %}
-
     <p>Nombre: {{gimnasio.nombre}}</p>
     <p>FechaDeCreacion: {{gimnasio.fechaCreacion}}</p>
     <p>Localizacion: {{gimnasio.localicacion}}</p>
 
-    <button>
-        <a href="{% url 'GimnasiosEditar' gimnasio.nombre %}"> Editar Gimnasios</a>
-    </button>
-    <button>
-        <a href="{% url 'GimnasiosEliminar' gimnasio.nombre %}"> Eliminar Gimnasios</a>
-    </button>
-
-
-
-    ▁ ▂ ▃  ▅ ▆ ▇ █ ▉ ▇ ▆ ▅ ▃ ▂ ▁ ▁ ▂ ▃  ▅ ▆ ▇ █ ▉ ▇ ▆ ▅ ▃ ▂ ▁ 
-
-    {% endfor %}
+    <a href="{% url 'GimnasiosLeer' %}"> Regresar </a>
 
 </body>
 </html>
