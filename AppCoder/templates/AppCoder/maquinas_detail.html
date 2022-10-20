@@ -10,21 +10,16 @@ MiPrimerProyecto
 
 {% block titulo %}
 
-Sedes que tenemos en estos momentos.
+Maquinas disponibles
                                 
 {% endblock %}
 
 {% block descripcion %}
+    
+    <p>Nombre: {{maquina.nombre}}</p>
+    <p>FechaDeCreacion: {{maquina.zonaDeTrabajo}}</p>
+    <p>Localizacion: {{maquina.pesoMax}}</p>
 
-
-    <form action="" method="POST"> {%csrf_token %}
-
-        {{form.as_p}}
-
-        <input type="submit" value="Enviar">
-
-
-    </form>
-
+    <a href="{% url 'MaquinasLeer' %}"> Regresar </a>
 
 {% endblock %}

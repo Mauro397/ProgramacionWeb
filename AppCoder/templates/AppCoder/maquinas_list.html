@@ -1,0 +1,37 @@
+{% extends "AppCoder/padre.html" %}
+
+{% block NavbarTitulo %}
+
+MiPrimerProyecto
+                                
+{% endblock %}
+
+{% load static %}
+
+{% block titulo %}
+
+Maquinas disponibles
+                                
+{% endblock %}
+
+{% block descripcion %}
+
+{% for maquina in object_list %}
+
+<p>Nombre: {{maquina.nombre}}</p>
+<p>ZonaDeTrabajo: {{maquina.zonaDeTrabajo}}</p>
+<p>PesoMax: {{maquina.pesoMax}}</p>
+
+<a href="{% url 'MaquinasDetalle' maquina.id %}"> ---------Ver Maquina---------</a>
+<a href="{% url 'MaquinasEditar' maquina.id %}"> Editar Maquina-------</a>
+<a href="{% url 'MaquinasBorrar' maquina.id %}"> Eliminar Maquina</a>
+
+
+{% endfor %}
+    
+
+<br>
+<a href="{% url 'MaquinasCrear' %}"> Crear Maquinas</a>
+
+                            
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "AppCoder/padre.html" %}
+
+{% block NavbarTitulo %}
+
+MiPrimerProyecto
+                                
+{% endblock %}
+
+{% load static %}
+
+{% block titulo %}
+
+Entrenadores disponibles
+                                
+{% endblock %}
+
+{% block descripcion %}
+
+{% for entrenador in object_list %}
+
+<p>Nombre: {{entrenador.nombre}}</p>
+<p>Apellido: {{entrenador.apellido}}</p>
+<p>Especialidad: {{entrenador.especialidad}}</p>
+
+<a href="{% url 'EntrenadoresDetalle' entrenador.id %}"> ---------Ver Entrenador---------</a>
+<a href="{% url 'EntrenadoresEditar' entrenador.id %}"> Editar Entrenador-------</a>
+<a href="{% url 'EntrenadoresBorrar' entrenador.id %}"> Eliminar Entrenador</a>
+
+
+{% endfor %}
+    
+
+<br>
+<a href="{% url 'EntrenadoresCrear' %}"> Crear Entrenador</a>
+
+                            
+{% endblock %}

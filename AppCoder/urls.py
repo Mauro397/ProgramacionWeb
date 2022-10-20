@@ -21,14 +21,17 @@ urlpatterns = [
     path("gimnasio/borrar/<int:pk>",BorrarGimnasio.as_view(),name="GimnasiosBorrar"),
 
     #CRUD de maquinas
-    path("leerMaquinas/", leerMaquinas,name="MaquinasLeer"),
-    path("crearMaquinas/",crearMaquina, name="MaquinasCrear"),
-    path("eliminarMaquinas/<maquinaNombre>/",eliminarMaquinas,name="MaquinasEliminar"),
-    path("editarMaquinas/<maquinaNombre>/",editarMaquinas,name="MaquinasEditar"),
+    path("maquina/list/", ListaMaquina.as_view(),name="MaquinasLeer"),
+    path("maquina/<int:pk>",DetalleMaquina.as_view(), name="MaquinasDetalle"),
+    path("maquina/crear/",CrearMaquina.as_view(),name="MaquinasCrear"),
+    path("maquina/editar/<int:pk>",ActualizarMaquina.as_view(),name="MaquinasEditar"),
+    path("maquina/borrar/<int:pk>",BorrarMaquina.as_view(),name="MaquinasBorrar"),
+
 
     #CRUD de entrenadores
-    path("leerEntrenadores/", leerEntrenadores,name="EntrenadoresLeer"),
-    path("crearEntrenadores/",crearEntrenador, name="EntrenadoresCrear"),
-    path("eliminarEntrenadores/<entrenadorNombre>/",eliminarEntrenadores,name="EntrenadoresEliminar"),
-    path("editarEntrenadores/<entrenadorNombre>/",editarEntrenadores,name="EntrenadoresEditar"),
+    path("entrenador/list/", ListaEntrenador.as_view(),name="EntrenadoresLeer"),
+    path("entrenador/<int:pk>",DetalleEntrenador.as_view(), name="EntrenadoresDetalle"),
+    path("entrenador/crear/",CrearEntrenador.as_view(),name="EntrenadoresCrear"),
+    path("entrenador/editar/<int:pk>",ActualizarEntrenador.as_view(),name="EntrenadoresEditar"),
+    path("entrenador/borrar/<int:pk>",BorrarEntrenador.as_view(),name="EntrenadoresBorrar"),
 ]

@@ -45,75 +45,30 @@ def resultados(request):
 
     return HttpResponse(respuesta)
 
-def leerEntrenadores(request):
+
+class ListaEntrenador(ListView):
+    model = Entrenadores
+
+class DetalleEntrenador(DetailView):
     
-    entrenador = Entrenadores.objects.all()
+    model = Entrenadores
 
-    contexto = {"Coach": entrenador}
+class CrearEntrenador(CreateView):
 
-    return render(request, "AppCoder/leerEntrenadores.html", contexto)
+    model = Entrenadores
+    succes_url = "/AppCoder/entrenador/list"
+    fields = ["nombre","apellido","especialidad"]
 
-def crearEntrenador(request):
-
-    if request.method =="POST": #Lo que ocurre si se le da al boton enviar
-
-        formulario1 = EntrenadorFormulario(request.POST)
-
-        if formulario1.is_valid():
-
-            info = formulario1.cleaned_data
-
-            entrenador = Entrenadores(nombre=info["nombre"], apellido=info["apellido"], especialidad=info["especialidad"])
-
-            entrenador.save()
-
-            return render(request, "AppCoder/inicio.html")
+class ActualizarEntrenador(UpdateView):
     
-    else:
+    model = Entrenadores
+    succes_url = "/AppCoder/entrenador/list"
+    fields = ["nombre","apellido","especialidad"]
 
-        formulario1 = EntrenadorFormulario()
+class BorrarEntrenador(DeleteView):
 
-
-    return render(request, "AppCoder/entrenadorFormulario.html", {"form1":formulario1})
-
-def eliminarEntrenadores(request, entrenadorNombre):
-
-    entrenador = Entrenadores.objects.get(nombre=entrenadorNombre)
-    entrenador.delete()
-
-    entrenadores = Entrenadores.objects.all()
-
-    contexto = {"Coach":entrenadores}
-
-    return render(request, "AppCoder/leerEntrenadores.html", contexto)
-
-def editarEntrenadores(request, entrenadorNombre):
-
-    entrenador =  Entrenadores.objects.get(nombre=entrenadorNombre)
-
-    if request.method =="POST": #Lo que ocurre si se le da al boton enviar
-
-        formulario1 = EntrenadorFormulario(request.POST)
-
-        if formulario1.is_valid():
-
-            info = formulario1.cleaned_data
-
-            entrenador.nombre = info["nombre"]
-            entrenador.apellido = info["apellido"]
-            entrenador.especialidad = info["especialidad"]             
-
-            entrenador.save()
-
-            return render(request, "AppCoder/inicio.html")
-    
-    else:
-
-        formulario1 = EntrenadorFormulario(initial={"nombre":entrenador.nombre,"apellido":entrenador.apellido,
-        "especialidad":entrenador.especialidad})
-
-
-    return render(request, "AppCoder/editarEntrenadores.html", {"form1":formulario1,"nombre":entrenadorNombre})    
+    model = Entrenadores
+    succes_url = "/AppCoder/entrenador/list"   
 
 
 #Seccion Maquinas
@@ -138,80 +93,29 @@ def resultadosMaquina(request):
 
     return HttpResponse(respuesta)
 
-def leerMaquinas(request):
+class ListaMaquina(ListView):
+    model = Maquinas
+
+class DetalleMaquina(DetailView):
     
-    maquinas = Maquinas.objects.all()
+    model = Maquinas
 
-    contexto = {"Maquinaria": maquinas}
+class CrearMaquina(CreateView):
 
-    return render(request, "AppCoder/leerMaquinas.html", contexto)
+    model = Maquinas
+    succes_url = "/AppCoder/maquina/list"
+    fields = ["nombre","zonaDeTrabajo","pesoMax"]
 
-
-def crearMaquina(request):
-
-    if request.method =="POST": #Lo que ocurre si se le da al boton enviar
-
-        formulario2 = MaquinasFormulario(request.POST)
-
-        if formulario2.is_valid():
-
-            info = formulario2.cleaned_data
-
-            maquina = Maquinas(nombre=info["nombre"], zonaDeTrabajo=info["zonaDeTrabajo"], pesoMax=info["pesoMax"])
-
-            maquina.save()
-
-            return render(request, "AppCoder/inicio.html")
+class ActualizarMaquina(UpdateView):
     
-    else:
+    model = Maquinas
+    succes_url = "/AppCoder/maquina/list"
+    fields = ["nombre","zonaDeTrabajo","pesoMax"]
 
-        formulario2 = MaquinasFormulario()
+class BorrarMaquina(DeleteView):
 
-
-    return render(request, "AppCoder/maquinasFormulario.html", {"form2":formulario2})
-
-
-def eliminarMaquinas(request, maquinaNombre):
-
-    maquina = Maquinas.objects.get(nombre=maquinaNombre)
-    maquina.delete()
-
-    maquinas = Maquinas.objects.all()
-
-    contexto = {"Maquinaria":maquinas}
-
-    return render(request, "AppCoder/leerMaquinas.html", contexto)
-
-
-def editarMaquinas(request, maquinaNombre):
-
-    maquina = Maquinas.objects.get(nombre=maquinaNombre)
-
-    if request.method =="POST": #Lo que ocurre si se le da al boton enviar
-
-        formulario2 = MaquinasFormulario(request.POST)
-
-        if formulario2.is_valid():
-
-            info = formulario2.cleaned_data
-
-            maquina.nombre = info["nombre"]
-            maquina.zonaDeTrabajo = info["zonaDeTrabajo"]
-            maquina.pesoMax = info["pesoMax"]  
-
-            maquina.save()
-
-            return render(request, "AppCoder/inicio.html")
-    
-    else:
-
-        formulario2 = MaquinasFormulario(initial={"nombre":maquina.nombre, "zonaDeTrabajo":maquina.zonaDeTrabajo,
-        "pesoMax":maquina.pesoMax})
-
-
-    return render(request, "AppCoder/editarMaquinas.html", {"form2":formulario2,"nombre":maquinaNombre})    
-
- 
+    model = Maquinas
+    succes_url = "/AppCoder/maquina/list"
 
 #Seccion Gimnasios
 

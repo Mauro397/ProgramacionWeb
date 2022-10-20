@@ -10,21 +10,16 @@ MiPrimerProyecto
 
 {% block titulo %}
 
-Sedes que tenemos en estos momentos.
+Entrenadores disponibles
                                 
 {% endblock %}
 
 {% block descripcion %}
+    
+    <p>Nombre: {{entrenador.nombre}}</p>
+    <p>Apellido: {{entrenador.apellido}}</p>
+    <p>Especialidad: {{entrenador.especialidad}}</p>
 
-
-    <form action="" method="POST"> {%csrf_token %}
-
-        {{form.as_p}}
-
-        <input type="submit" value="Enviar">
-
-
-    </form>
-
+    <a href="{% url 'EntrenadoresLeer' %}"> Regresar </a>
 
 {% endblock %}

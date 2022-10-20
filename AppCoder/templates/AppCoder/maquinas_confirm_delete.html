@@ -10,21 +10,19 @@ MiPrimerProyecto
 
 {% block titulo %}
 
-Sedes que tenemos en estos momentos.
+Maquinas disponibles
                                 
 {% endblock %}
 
 {% block descripcion %}
 
-
     <form action="" method="POST"> {%csrf_token %}
 
-        {{form.as_p}}
+        <p>¿Desea eliminar esta maquina permanentemente?</p>
 
-        <input type="submit" value="Enviar">
+        <input type="submit" value="confirmar">
 
 
     </form>
-
 
 {% endblock %}

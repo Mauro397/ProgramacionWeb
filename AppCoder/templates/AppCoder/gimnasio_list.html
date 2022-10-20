@@ -1,31 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "AppCoder/padre.html" %}
+
+{% block NavbarTitulo %}
+
+MiPrimerProyecto
+                                
+{% endblock %}
+
+{% load static %}
+
+{% block titulo %}
+
+Sedes que tenemos en estos momentos.
+                                
+{% endblock %}
+
+{% block descripcion %}
+
+{% for gimnasio in object_list %}
+
+<p>Nombre: {{gimnasio.nombre}}</p>
+<p>FechaDeCreacion: {{gimnasio.fechaCreacion}}</p>
+<p>Localizacion: {{gimnasio.localicacion}}</p>
+
+<a href="{% url 'GimnasiosDetalle' gimnasio.id %}"> ---------Ver Gimnasio---------</a>
+<a href="{% url 'GimnasiosEditar' gimnasio.id %}"> Editar Gimnasio-------</a>
+<a href="{% url 'GimnasiosBorrar' gimnasio.id %}"> Eliminar Gimnasio</a>
+
+
+{% endfor %}
     
-    {% for gimnasio in object_list %}
 
-    <p>Nombre: {{gimnasio.nombre}}</p>
-    <p>FechaDeCreacion: {{gimnasio.fechaCreacion}}</p>
-    <p>Localizacion: {{gimnasio.localicacion}}</p>
+<br>
+<a href="{% url 'GimnasiosCrear' %}"> Crear Gimnasio</a>
 
-    <a href="{% url 'GimnasiosDetalle' gimnasio.id %}"> Ver Gimnasio</a>
-    <a href="{% url 'GimnasiosEditar' gimnasio.id %}"> Editar Gimnasio</a>
-    <a href="{% url 'GimnasiosBorrar' gimnasio.id %}"> Eliminar Gimnasio</a>
-
-
-    ▁ ▂ ▃  ▅ ▆ ▇ █ ▉ ▇ ▆ ▅ ▃ ▂ ▁ ▁ ▂ ▃  ▅ ▆ ▇ █ ▉ ▇ ▆ ▅ ▃ ▂ ▁ 
-
-    {% endfor %}
+                            
+{% endblock %}
     
 
-    <br>
-    <a href="{% url 'GimnasiosCrear' %}"> Crear Gimnasio</a>
 
-</body>
-</html>
