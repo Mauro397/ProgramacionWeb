@@ -235,9 +235,6 @@ def resultadosGimnasio(request):
     return HttpResponse(respuesta)
 
 
-
-
-
 class ListaGimnasio(ListView):
     model = Gimnasio
 

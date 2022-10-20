@@ -3,7 +3,7 @@ from AppCoder.views import *
 
 urlpatterns = [
     path("",inicio, name="Inicio"),
-    #path("gimnasio/",gimnasio,name="Gimnasios"),
+    path("gimnasio/",gimnasio,name="Gimnasios"),
     path("maquina/",maquina,name="Maquinas"),
     path("entrenador",entrenador,name="Entrenadores"),
     path("buscarEntrenador", busquedaEntrenador, name="BuscarEntrenador"),
